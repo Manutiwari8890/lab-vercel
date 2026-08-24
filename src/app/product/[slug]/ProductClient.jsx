@@ -422,7 +422,23 @@ export default function ProductClient({ initialData }) {
                             </form>
                         </div>
                     }
-                    
+                    <ul className="flex items-center text-lg font-semibold mb-4 gap-2 text-sm">
+                        <li>
+                            <Link href="/">Home</Link>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24" width="18" height="18"><path d="M15.75,9.525,11.164,4.939A1.5,1.5,0,0,0,9.043,7.061l4.586,4.585a.5.5,0,0,1,0,.708L9.043,16.939a1.5,1.5,0,0,0,2.121,2.122l4.586-4.586A3.505,3.505,0,0,0,15.75,9.525Z" /></svg>
+                        </li>
+                        <li>
+                            <Link href={`/product-category/${data?.categories?.[0]?.slug}`}>{data?.categories?.[0]?.name}</Link>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24" width="18" height="18"><path d="M15.75,9.525,11.164,4.939A1.5,1.5,0,0,0,9.043,7.061l4.586,4.585a.5.5,0,0,1,0,.708L9.043,16.939a1.5,1.5,0,0,0,2.121,2.122l4.586-4.586A3.505,3.505,0,0,0,15.75,9.525Z" /></svg>
+                        </li>
+                        <li>
+                            <p  className="text-primary">{data?.name}</p>
+                        </li>
+                    </ul>
                     <div className="grid grid-cols-10 gap-5 mb-10 lg:gap-10 xl:mb-15">
                         <div className="col-span-10 md:col-span-4 lg:col-span-3">
                             <div className="w-full border border-gray-300 p-2 overflow-hidden">
