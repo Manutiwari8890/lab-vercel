@@ -120,9 +120,12 @@ export default function CheckoutClient() {
     ];
 
 
-    if (!isLoggedIn) {
-        router.push('/login');
-    }
+    useEffect(() => {
+        if (!isLoggedIn) {
+            router.push('/login');
+        }
+    }, [isLoggedIn])
+    
 
     useEffect(() => {
         startLoading();

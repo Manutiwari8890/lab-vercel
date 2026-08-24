@@ -3,9 +3,8 @@
 import { AnimatePresence } from "framer-motion";
 import ProductCard from "@/components/ProductCard";
 import { useState, useEffect, useContext } from "react";
-import { AuthContext } from "@/context/AuthContext";
 import { WishListContext } from "@/context/WishListContext";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { LoadingContext } from "@/context/LoadingContext";
 import Link from "next/link";
 import { Range } from "react-range";
@@ -23,7 +22,7 @@ export default function SearchClient(){
     const [brandLoad, setBrandLoad] = useState(false);
     const searchParams = useSearchParams();
     const searchValue = searchParams.get('s');
-    const [meta, setMeta] = useState({});
+    const [meta, setMeta] = useState(null);
     const [page, setPage] = useState(1);
 
     const value = searchValue || ''; 

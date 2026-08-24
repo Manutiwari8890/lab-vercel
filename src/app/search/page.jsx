@@ -1,4 +1,6 @@
+import Loader from "@/components/Loader";
 import SearchClient from "./SearchClient";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Search Products | Lab Disposable Products",
@@ -46,6 +48,8 @@ export const metadata = {
 
 export default function Page(){
     return (
-        <SearchClient />   
+      <Suspense fallback={<Loader />}>
+        <SearchClient />
+      </Suspense>
     )
 }

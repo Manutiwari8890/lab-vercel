@@ -99,64 +99,64 @@ export default function Page() {
                     </div>
                     <h2 className="text-2xl mx-auto font-semibold text-dark page-title mb-10 mt-15">Brands We Deal In</h2>
                     <div className="grid grid-cols-4 gap-5 md:grid-cols-5 lg:grid-cols-8">
-                        <Link to={`/brand/accuris`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/accuris`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/Accuris-Inst-Logo-300x143.png" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/adam-equipment`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/adam-equipment`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/adamequipment_brandlogo.jpg" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/ahlstrom-munksjo`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/ahlstrom-munksjo`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/Ahlstrom-Munksjo_brandlogo.jpg" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/amcor`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/amcor`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/Amcor_brandlogo.jpg" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/ansell`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/ansell`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/Ansell_brandlogo.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/bd-med`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/bd-med`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/BD_brandlogo.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/bel-art`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/bel-art`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/spbelart_brandlogo.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/benchmark-scientific`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/benchmark-scientific`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/benchmark_brandlogo.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/bioplast`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/bioplast`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/BioPlast_Distrubutor-Logo.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/biotc-labware`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/biotc-labware`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/biotc_brandlogo.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/borosil`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/borosil`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/Borosil_brandlogo.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/brandtech`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/brandtech`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/BrandTech_Distrubutor-Logo.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/celltreat-scientific`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/celltreat-scientific`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/cellTreatScientific_brandlogo.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/chemier`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/chemier`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/ChemieR_logo.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/chlorax`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/chlorax`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/clorox.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/axygen`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/axygen`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/CorningAxygen_Distrubutor.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/corning-biologics`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/corning-biologics`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/CorningBiological.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/corning-falcon`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/corning-falcon`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/CorningFalcon.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/corning-glass`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/corning-glass`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/CorningGlass.webp" className="group-hover:scale-105" />
                         </Link>
-                        <Link to={`/brand/corning-gosselin`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
+                        <Link href={`/brand/corning-gosselin`} className="group img-area border border-gray-300 p-3 grayscale-200 hover:border-primary hover:grayscale-0 content-center">
                             <img src="/assets/images/CorningGosselin.webp" className="group-hover:scale-105" />
                         </Link>
                     </div>
