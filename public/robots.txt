@@ -1,0 +1,9 @@
+# Allow all crawlers
+User-agent: *
+Disallow: /admin/
+Disallow: /login/
+Disallow: /private/
+
+# Crawl delay (optional, in seconds)
+Crawl-delay: 10
+Sitemap: https://www.labdisposable.com/sitemap.xml
