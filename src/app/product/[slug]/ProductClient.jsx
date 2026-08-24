@@ -211,13 +211,13 @@ export default function ProductClient({ initialData }) {
             company: bcompany,
             location: blocation,
             message: bmessage,
-            quantity : Number(equantity),
-            "cf-turnstile-response" : captchaValue
+            quantity: Number(equantity),
+            "cf-turnstile-response": captchaValue
         };
 
         let errors = validate(regobj)
         setBulkErrors(errors);
-        if(Object.keys(errors).length === 0){
+        if (Object.keys(errors).length === 0) {
             setBulkLoading(true);
             fetch(`${baseUrl}bulk-inquiry`, {
                 method: "POST",
@@ -295,31 +295,31 @@ export default function ProductClient({ initialData }) {
 
     const validate = (val) => {
         const errors = {};
-        if(!val.first_name){
+        if (!val.first_name) {
             errors.fname = "First Name is required !"
         }
-        if(!val.last_name){
+        if (!val.last_name) {
             errors.lname = "Last Name is required !"
         }
-        if(!val.contact_no){
+        if (!val.contact_no) {
             errors.contact_no = "Contact Number is required !"
         }
-        if(!val.email){
+        if (!val.email) {
             errors.email = "Email is required !"
         }
-        if(!val.company){
+        if (!val.company) {
             errors.company = "Company is required !"
         }
-        if(!val.location){
+        if (!val.location) {
             errors.location = "Location is required !"
         }
-        if(!val.message){
+        if (!val.message) {
             errors.message = "Message is required !"
         }
-        if(!val.quantity){
+        if (!val.quantity) {
             errors.quantity = "Quantity is required !"
         }
-        if(!val["cf-turnstile-response"]){
+        if (!val["cf-turnstile-response"]) {
             errors.captcha = "Please select the captcha"
         }
         return errors
@@ -351,77 +351,6 @@ export default function ProductClient({ initialData }) {
         <>
             <section className="py-5 md:py-10">
                 <div className="container px-2 mx-auto lg:px-5">
-                    {overlay == "Inquiry Now" &&
-                        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000] max-w-[800px] bg-white max-h-screen p-4 w-full h-auto overflow-auto">
-                            <form onSubmit={(e) => handleBulk(e)}>
-                                <div className="grid grid-cols-2 gap-x-4 gap-y-2 xl:gap-y-2">
-                                    <div className="form-group mb-1 relative">
-                                        <label htmlFor="fname" className="text-left text-sm font-semibold inline-block w-full mb-2">First Name</label>
-                                        <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.fname ? "border-red-500" : "border-[#afafaf]"}`} id="fname" placeholder="Your First Name" value={bfname} onChange={(e) => setBfname(e.target.value)} />
-                                        {bulkErrors?.fname && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.fname}</p>}
-                                    </div>
-                                    <div className="form-group mb-1 relative">
-                                        <label htmlFor="lname" className="text-left text-sm font-semibold inline-block w-full mb-2">Last Name</label>
-                                        <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.lname ? "border-red-500" : "border-[#afafaf]"}`} id="lname" placeholder="Your Last Name" value={blname} onChange={(e) => setBlname(e.target.value)} />
-                                        {bulkErrors?.lname && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.lname}</p>}
-                                    </div>
-                                    <div className="form-group mb-1 relative">
-                                        <label htmlFor="email" className="text-left text-sm font-semibold inline-block w-full mb-2">Email</label>
-                                        <input type="email" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.email ? "border-red-500" : "border-[#afafaf]"}`} id="email" placeholder="Your Email" value={bemail} onChange={(e) => setBemail(e.target.value)} />
-                                        {bulkErrors?.email && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.email}</p>}
-                                    </div>
-                                    <div className="form-group mb-1 relative">
-                                        <label htmlFor="tel" className="text-left text-sm font-semibold inline-block w-full mb-2">Contact Number</label>
-                                        <input type="tel" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.contact_no ? "border-red-500" : "border-[#afafaf]"}`} id="tel" placeholder="Your Contact Number" value={bnumber} onChange={(e) => setBnumber(e.target.value)} />
-                                        {bulkErrors?.contact_no && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.contact_no}</p>}
-                                    </div>
-                                    <div className="form-group mb-1 relative">
-                                        <label htmlFor="company" className="text-left text-sm font-semibold inline-block w-full mb-2">Company</label>
-                                        <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.company ? "border-red-500" : "border-[#afafaf]"}`} id="company" placeholder="Your Company Name" value={bcompany} onChange={(e) => setBcompany(e.target.value)} />
-                                        {bulkErrors?.company && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.company}</p>}
-                                    </div>
-                                    <div className="form-group mb-1 relative">
-                                        <label htmlFor="location" className="text-left text-sm font-semibold inline-block w-full mb-2">Location</label>
-                                        <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.location ? "border-red-500" : "border-[#afafaf]"}`} id="location" placeholder="Location" value={blocation} onChange={(e) => setBlocation(e.target.value)} />
-                                        {bulkErrors?.location && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.location}</p>}
-                                    </div>
-                                    <div className="form-group mb-1 relative">
-                                        <label htmlFor="quantity" className="text-left text-sm font-semibold inline-block w-full mb-2">Quantity</label>
-                                        <input type="number" className={`w-full border py-4 px-4 text-sm font-semibold appearance-none focus:border-primary ${bulkErrors?.message ? "border-red-500" : "border-[#afafaf]"}`} id="quantity" placeholder="Quantity" value={equantity} onChange={(e) => setEquantity(e.target.value)} />
-                                        {bulkErrors?.quantity && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.quantity}</p>}
-                                    </div>
-                                    <div className="form-group mb-1 relative">
-                                        <label htmlFor="message" className="text-left text-sm font-semibold inline-block w-full mb-2">Message</label>
-                                        <textarea maxLength="200" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.message ? "border-red-500" : "border-[#afafaf]"}`} id="message" placeholder="Your Message" onChange={(e) => setBmessage(e.target.value)} defaultValue={bmessage}></textarea>
-                                        {bulkErrors?.message && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.message}</p>}
-                                    </div>
-                                    <div className="form-group">
-                                        <Turnstile
-                                            key={captchaKey}
-                                            ref={turnstileRef}
-                                            sitekey="0x4AAAAAACEPK8k1LXHKe5b8"
-                                            onVerify={handleCaptchaChange}
-                                            onExpire={() => setCaptchaValue(null)}
-                                            className="text-left"
-                                        />
-                                        {bulkErrors?.captcha && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.captcha}</p>}
-                                    </div>
-                                </div>
-                                <button className={`w-full text-sm font-bold text-center uppercase text-white btn btn-primary btn-scale-0 py-4 px-5 ${bulkLoading ? "bg-primary/70" : "bg-primary"} mt-2 cursor-pointer md:w-max`} disabled={bulkLoading}>
-                                    {bulkLoading ?
-                                        <div role="status" className="flex gap-2 items-center justify-center">
-                                            <svg aria-hidden="true" className="w-5 h-5 text-neutral-tertiary animate-spin fill-brand" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#ffffffbf" /><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="white" /></svg>
-                                            Please Wait...
-                                        </div> :
-                                        <span className="relative z-1 flex items-center gap-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" id="Isolation_Mode" data-name="Isolation Mode" viewBox="0 0 24 24" className="w-5 h-5"><path d="M1.77,6.215A2.433,2.433,0,0,0,0,8.611a2.474,2.474,0,0,0,.771,1.71L4,13.548V20h6.448l3.265,3.267a2.4,2.4,0,0,0,1.706.713,2.438,2.438,0,0,0,.618-.08,2.4,2.4,0,0,0,1.726-1.689L24-.016ZM3.533,8.856l13.209-3.7L7,14.9V12.326Zm11.6,11.6L11.675,17H9.1l9.734-9.741Z" fill="currentColor"></path></svg>
-                                            Submit
-                                        </span>
-                                    }
-                                </button>
-                            </form>
-                        </div>
-                    }
                     <ul className="flex items-center text-lg font-semibold mb-4 gap-2 text-sm">
                         <li>
                             <Link href="/">Home</Link>
@@ -436,13 +365,13 @@ export default function ProductClient({ initialData }) {
                             <svg xmlns="http://www.w3.org/2000/svg" id="Bold" viewBox="0 0 24 24" width="18" height="18"><path d="M15.75,9.525,11.164,4.939A1.5,1.5,0,0,0,9.043,7.061l4.586,4.585a.5.5,0,0,1,0,.708L9.043,16.939a1.5,1.5,0,0,0,2.121,2.122l4.586-4.586A3.505,3.505,0,0,0,15.75,9.525Z" /></svg>
                         </li>
                         <li>
-                            <p  className="text-primary">{data?.name}</p>
+                            {data?.name && <p className="text-primary">{data?.name}</p>}
                         </li>
                     </ul>
                     <div className="grid grid-cols-10 gap-5 mb-10 lg:gap-10 xl:mb-15">
                         <div className="col-span-10 md:col-span-4 lg:col-span-3">
                             <div className="w-full border border-gray-300 p-2 overflow-hidden">
-                                <ZoomImage src={data?.image_url ? data?.image_url : "/assets/images/placeholder.jpg"} alt={data?.name || "Product Image"}/>
+                                <ZoomImage src={data?.image_url ? data?.image_url : "/assets/images/placeholder.jpg"} alt={data?.name || "Product Image"} />
                             </div>
                         </div>
                         <div className="col-span-10 md:col-span-6 lg:col-span-7">
@@ -472,7 +401,7 @@ export default function ProductClient({ initialData }) {
                                                         <h6 className="text-lg font-bold text-green-600 lg:text-2xl">${data?.price}</h6>
                                                 ) :
                                                 ''
-                                            } 
+                                            }
                                         </>
                                     }
                                 </div>
@@ -492,7 +421,7 @@ export default function ProductClient({ initialData }) {
                                                 <button className={`w-max text-base font-bold text-white btn btn-primary py-3 px-4 mt-2 w-full cursor-pointer ${loadingButton === data?.id ? "bg-primary/70 disabled" : "bg-primary"}`} onClick={() => handleAddToCart(data?.id, quantity[data?.id] || 0)}>
                                                     {loadingButton === data?.id ?
                                                         <div role="status" className="flex gap-2 items-center justify-center">
-                                                            <svg aria-hidden="true" className="w-5 h-5 text-neutral-tertiary animate-spin fill-brand" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#ffffffbf"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="white"/></svg>
+                                                            <svg aria-hidden="true" className="w-5 h-5 text-neutral-tertiary animate-spin fill-brand" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#ffffffbf" /><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="white" /></svg>
                                                             Please Wait...
                                                         </div>
                                                         :
@@ -502,7 +431,7 @@ export default function ProductClient({ initialData }) {
                                                         </span>
                                                     }
                                                 </button>
-                                                <button className={`text-base rounded-full font-bold btn btn-secondary btn-scale-0 mt-2 w-[45px] h-[45px] cursor-pointer ${wishlistLoadingIds.includes(data?.id) ? "bg-secondary/70 disabled" : "bg-secondary" } text-white`} onClick={() => toggleWishlist(data?.id)} disabled={wishlistLoadingIds.includes(data?.id)} aria-label="Toggle Wishlist">
+                                                <button className={`text-base rounded-full font-bold btn btn-secondary btn-scale-0 mt-2 w-[45px] h-[45px] cursor-pointer ${wishlistLoadingIds.includes(data?.id) ? "bg-secondary/70 disabled" : "bg-secondary"} text-white`} onClick={() => toggleWishlist(data?.id)} disabled={wishlistLoadingIds.includes(data?.id)} aria-label="Toggle Wishlist">
                                                     {wishlistLoadingIds.includes(data?.id) ? (
                                                         <div role="status" className="flex gap-2 items-center justify-center">
                                                             <svg aria-hidden="true" className="w-5 h-5 text-neutral-tertiary animate-spin fill-brand" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#ffffffbf" /><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="white" /></svg>
@@ -520,7 +449,7 @@ export default function ProductClient({ initialData }) {
                                             }} aria-label="Inquiry"><span className="relative z-1">Inquiry Now</span></button>
 
                                         }
-                                        
+
                                     </div>
                                 </div>
 
@@ -590,7 +519,7 @@ export default function ProductClient({ initialData }) {
                                     </li>
                                     <li>
                                         <Link className="inline-block text-primary w-[40px] h-[40px] text-sm text-center content-center border-1 border-primary hover:bg-primary hover:text-white hover:scale-110" href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`} target="_blank" rel="noopener noreferrer" >
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" className="w-5 h-5 m-auto"><path d="M196.3 512L103.4 512L103.4 212.9L196.3 212.9L196.3 512zM149.8 172.1C120.1 172.1 96 147.5 96 117.8C96 103.5 101.7 89.9 111.8 79.8C121.9 69.7 135.6 64 149.8 64C164 64 177.7 69.7 187.8 79.8C197.9 89.9 203.6 103.6 203.6 117.8C203.6 147.5 179.5 172.1 149.8 172.1zM543.9 512L451.2 512L451.2 366.4C451.2 331.7 450.5 287.2 402.9 287.2C354.6 287.2 347.2 324.9 347.2 363.9L347.2 512L254.4 512L254.4 212.9L343.5 212.9L343.5 253.7L344.8 253.7C357.2 230.2 387.5 205.4 432.7 205.4C526.7 205.4 544 267.3 544 347.7L544 512L543.9 512z" fill="currentColor"></path></svg>                                       
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" className="w-5 h-5 m-auto"><path d="M196.3 512L103.4 512L103.4 212.9L196.3 212.9L196.3 512zM149.8 172.1C120.1 172.1 96 147.5 96 117.8C96 103.5 101.7 89.9 111.8 79.8C121.9 69.7 135.6 64 149.8 64C164 64 177.7 69.7 187.8 79.8C197.9 89.9 203.6 103.6 203.6 117.8C203.6 147.5 179.5 172.1 149.8 172.1zM543.9 512L451.2 512L451.2 366.4C451.2 331.7 450.5 287.2 402.9 287.2C354.6 287.2 347.2 324.9 347.2 363.9L347.2 512L254.4 512L254.4 212.9L343.5 212.9L343.5 253.7L344.8 253.7C357.2 230.2 387.5 205.4 432.7 205.4C526.7 205.4 544 267.3 544 347.7L544 512L543.9 512z" fill="currentColor"></path></svg>
                                         </Link>
                                     </li>
                                 </ul>
@@ -657,14 +586,14 @@ export default function ProductClient({ initialData }) {
                                     <table className="w-1/2">
                                         <tbody className="text-lg font-semibold ">
                                             {data?.additional_info &&
-                                            Object.entries(JSON.parse(data?.additional_info))?.map((info) => (
-                                                (info[0]!=="product_id" && info[1] &&
-                                                    <tr key={info[0]}>
-                                                        <th className="text-left py-2">{info[0]}</th> 
-                                                        <td className="py-2 text-primary">{info[1]}</td>
-                                                    </tr>
-                                                ) 
-                                            ))}
+                                                Object.entries(JSON.parse(data?.additional_info))?.map((info) => (
+                                                    (info[0] !== "product_id" && info[1] &&
+                                                        <tr key={info[0]}>
+                                                            <th className="text-left py-2">{info[0]}</th>
+                                                            <td className="py-2 text-primary">{info[1]}</td>
+                                                        </tr>
+                                                    )
+                                                ))}
                                         </tbody>
                                     </table>
                                 </motion.div>
@@ -719,18 +648,18 @@ export default function ProductClient({ initialData }) {
                                                             onClick={handleSubmit}
                                                             disabled={revLoad}
                                                         >
-                                                            {revLoad ? 
+                                                            {revLoad ?
                                                                 <div role="status" className="flex gap-2 items-center justify-center">
-                                                                    <svg aria-hidden="true" className="w-5 h-5 text-neutral-tertiary animate-spin fill-brand" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#ffffffbf"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="white"/></svg>
+                                                                    <svg aria-hidden="true" className="w-5 h-5 text-neutral-tertiary animate-spin fill-brand" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#ffffffbf" /><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="white" /></svg>
                                                                     Please Wait...
                                                                 </div> :
                                                                 <span className="relative z-1 flex items-center gap-2">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" id="Isolation_Mode" data-name="Isolation Mode" viewBox="0 0 24 24" className="w-5 h-5"><path d="M1.77,6.215A2.433,2.433,0,0,0,0,8.611a2.474,2.474,0,0,0,.771,1.71L4,13.548V20h6.448l3.265,3.267a2.4,2.4,0,0,0,1.706.713,2.438,2.438,0,0,0,.618-.08,2.4,2.4,0,0,0,1.726-1.689L24-.016ZM3.533,8.856l13.209-3.7L7,14.9V12.326Zm11.6,11.6L11.675,17H9.1l9.734-9.741Z" fill="currentColor"></path></svg>
                                                                     Submit Review
                                                                 </span>
-                                                            } 
+                                                            }
                                                         </motion.button>
-                                                    </> : 
+                                                    </> :
                                                     <p className="text-base font-semibold">Please <Link href="/login" className="text-primary hover:text-secondary">Login</Link></p>
                                                 }
                                             </div>
@@ -837,47 +766,47 @@ export default function ProductClient({ initialData }) {
                                         </div>
                                         <div className="w-1/2 mt-5 xl:mt-10 xl:w-1/3">
                                             {reviews?.length > 0 && (
-                                                    reviews?.map((rev) => (
-                                                        <div className="py-5 border-b border-gray-300 mb-2" key={rev?.id}>
-                                                            <div className="flex justify-between items-center mb-2">
-                                                                <div className="flex items-center gap-2">
-                                                                    <Image src="/assets/images/user.webp" alt="user" width={50} height={50} className="w-[50px] h-[50px] rounded-full" />
-                                                                    <h5 className="text-xl font-semibold text-dark">{rev?.user?.name}</h5>
-                                                                    <p className="text-base text-gray-500 font-semibold">( {new Date(rev?.updated_at).toLocaleDateString('en-IN',{
-                                                                            "weekday" : "short",
-                                                                            "day" : "2-digit",
-                                                                            "month" : "long",
-                                                                            "year" : "numeric"
-                                                                        })} )
-                                                                    </p>
-                                                                </div>
-                                                                <div className="flex gap-1 text-secondary">
-                                                                    <Star
-                                                                        size={14}
-                                                                        className="text-primary fill-primary transition-colors duration-200"
-                                                                    />
-                                                                    <Star
-                                                                        size={14}
-                                                                        className="text-primary fill-primary transition-colors duration-200"
-                                                                    />
-                                                                    <Star
-                                                                        size={14}
-                                                                        className="text-primary fill-primary transition-colors duration-200"
-                                                                    />
-                                                                    <Star
-                                                                        size={14}
-                                                                        className="text-primary fill-primary transition-colors duration-200"
-                                                                    />
-                                                                    <Star
-                                                                        size={14}
-                                                                        className="text-gray-300  transition-colors duration-200"
-                                                                    />
-                                                                </div>
+                                                reviews?.map((rev) => (
+                                                    <div className="py-5 border-b border-gray-300 mb-2" key={rev?.id}>
+                                                        <div className="flex justify-between items-center mb-2">
+                                                            <div className="flex items-center gap-2">
+                                                                <Image src="/assets/images/user.webp" alt="user" width={50} height={50} className="w-[50px] h-[50px] rounded-full" />
+                                                                <h5 className="text-xl font-semibold text-dark">{rev?.user?.name}</h5>
+                                                                <p className="text-base text-gray-500 font-semibold">( {new Date(rev?.updated_at).toLocaleDateString('en-IN', {
+                                                                    "weekday": "short",
+                                                                    "day": "2-digit",
+                                                                    "month": "long",
+                                                                    "year": "numeric"
+                                                                })} )
+                                                                </p>
                                                             </div>
-                                                            <p className="text-xl font-semibold text-gray-500 pl-15">test</p>
+                                                            <div className="flex gap-1 text-secondary">
+                                                                <Star
+                                                                    size={14}
+                                                                    className="text-primary fill-primary transition-colors duration-200"
+                                                                />
+                                                                <Star
+                                                                    size={14}
+                                                                    className="text-primary fill-primary transition-colors duration-200"
+                                                                />
+                                                                <Star
+                                                                    size={14}
+                                                                    className="text-primary fill-primary transition-colors duration-200"
+                                                                />
+                                                                <Star
+                                                                    size={14}
+                                                                    className="text-primary fill-primary transition-colors duration-200"
+                                                                />
+                                                                <Star
+                                                                    size={14}
+                                                                    className="text-gray-300  transition-colors duration-200"
+                                                                />
+                                                            </div>
                                                         </div>
-                                                    ))
-                                                )}
+                                                        <p className="text-xl font-semibold text-gray-500 pl-15">test</p>
+                                                    </div>
+                                                ))
+                                            )}
                                         </div>
                                     </div>
                                 </motion.div>
@@ -901,32 +830,32 @@ export default function ProductClient({ initialData }) {
                                                 </div>
                                                 <div className="form-group mb-3 relative">
                                                     <label htmlFor="lname" className="text-left text-sm font-semibold inline-block w-full mb-2">Last Name</label>
-                                                    <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.lname ? "border-red-500" : "border-[#afafaf]"}`} id="lname" placeholder="Your Last Name" value={blname} onChange={(e) => setBlname(e.target.value)}  />
+                                                    <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.lname ? "border-red-500" : "border-[#afafaf]"}`} id="lname" placeholder="Your Last Name" value={blname} onChange={(e) => setBlname(e.target.value)} />
                                                     {bulkErrors?.lname && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.lname}</p>}
                                                 </div>
                                                 <div className="form-group mb-3 relative">
                                                     <label htmlFor="email" className="text-left text-sm font-semibold inline-block w-full mb-2">Email</label>
-                                                    <input type="email" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.email ? "border-red-500" : "border-[#afafaf]"}`} id="email" placeholder="Your Email" value={bemail} onChange={(e) => setBemail(e.target.value)}  />
+                                                    <input type="email" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.email ? "border-red-500" : "border-[#afafaf]"}`} id="email" placeholder="Your Email" value={bemail} onChange={(e) => setBemail(e.target.value)} />
                                                     {bulkErrors?.email && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.email}</p>}
                                                 </div>
                                                 <div className="form-group mb-3 relative">
                                                     <label htmlFor="tel" className="text-left text-sm font-semibold inline-block w-full mb-2">Contact Number</label>
-                                                    <input type="tel" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.contact_no ? "border-red-500" : "border-[#afafaf]"}`} id="tel" placeholder="Your Contact Number" value={bnumber} onChange={(e) => setBnumber(e.target.value)}  />
+                                                    <input type="tel" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.contact_no ? "border-red-500" : "border-[#afafaf]"}`} id="tel" placeholder="Your Contact Number" value={bnumber} onChange={(e) => setBnumber(e.target.value)} />
                                                     {bulkErrors?.contact_no && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.contact_no}</p>}
                                                 </div>
                                                 <div className="form-group mb-3 relative">
                                                     <label htmlFor="company" className="text-left text-sm font-semibold inline-block w-full mb-2">Company</label>
-                                                    <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.company ? "border-red-500" : "border-[#afafaf]"}`} id="company" placeholder="Your Company Name" value={bcompany} onChange={(e) => setBcompany(e.target.value)}  />
+                                                    <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.company ? "border-red-500" : "border-[#afafaf]"}`} id="company" placeholder="Your Company Name" value={bcompany} onChange={(e) => setBcompany(e.target.value)} />
                                                     {bulkErrors?.company && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.company}</p>}
                                                 </div>
                                                 <div className="form-group mb-3 relative">
                                                     <label htmlFor="location" className="text-left text-sm font-semibold inline-block w-full mb-2">Location</label>
-                                                    <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.location ? "border-red-500" : "border-[#afafaf]"}`} id="location" placeholder="Location" value={blocation} onChange={(e) => setBlocation(e.target.value)}  />
+                                                    <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.location ? "border-red-500" : "border-[#afafaf]"}`} id="location" placeholder="Location" value={blocation} onChange={(e) => setBlocation(e.target.value)} />
                                                     {bulkErrors?.location && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.location}</p>}
                                                 </div>
                                                 <div className="form-group mb-3 relative">
                                                     <label htmlFor="quantity" className="text-left text-sm font-semibold inline-block w-full mb-2">Quantity</label>
-                                                    <input type="number" className={`w-full border py-4 px-4 text-sm font-semibold appearance-none focus:border-primary ${bulkErrors?.message ? "border-red-500" : "border-[#afafaf]"}`} id="quantity" placeholder="Quantity" value={equantity} onChange={(e) => setEquantity(e.target.value)}  />
+                                                    <input type="number" className={`w-full border py-4 px-4 text-sm font-semibold appearance-none focus:border-primary ${bulkErrors?.message ? "border-red-500" : "border-[#afafaf]"}`} id="quantity" placeholder="Quantity" value={equantity} onChange={(e) => setEquantity(e.target.value)} />
                                                     {bulkErrors?.quantity && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.quantity}</p>}
                                                 </div>
                                                 <div className="form-group mb-3 relative">
@@ -941,22 +870,22 @@ export default function ProductClient({ initialData }) {
                                                         sitekey="0x4AAAAAACEPK8k1LXHKe5b8"
                                                         onVerify={handleCaptchaChange}
                                                         onExpire={() => setCaptchaValue(null)}
-                                                        className="text-left"    
+                                                        className="text-left"
                                                     />
                                                     {bulkErrors?.captcha && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.captcha}</p>}
                                                 </div>
                                             </div>
-                                            <button className={`w-full text-sm font-bold uppercase text-white btn btn-primary btn-scale-0 py-4 px-5 ${bulkLoading ? "bg-primary/70" : "bg-primary"} mt-2 cursor-pointer md:w-max`} disabled={bulkLoading}> 
-                                                {bulkLoading ? 
+                                            <button className={`w-full text-sm font-bold uppercase text-white btn btn-primary btn-scale-0 py-4 px-5 ${bulkLoading ? "bg-primary/70" : "bg-primary"} mt-2 cursor-pointer md:w-max`} disabled={bulkLoading}>
+                                                {bulkLoading ?
                                                     <div role="status" className="flex gap-2 items-center justify-center">
-                                                        <svg aria-hidden="true" className="w-5 h-5 text-neutral-tertiary animate-spin fill-brand" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#ffffffbf"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="white"/></svg>
+                                                        <svg aria-hidden="true" className="w-5 h-5 text-neutral-tertiary animate-spin fill-brand" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#ffffffbf" /><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="white" /></svg>
                                                         Please Wait...
                                                     </div> :
                                                     <span className="relative z-1 flex items-center gap-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg" id="Isolation_Mode" data-name="Isolation Mode" viewBox="0 0 24 24" className="w-5 h-5"><path d="M1.77,6.215A2.433,2.433,0,0,0,0,8.611a2.474,2.474,0,0,0,.771,1.71L4,13.548V20h6.448l3.265,3.267a2.4,2.4,0,0,0,1.706.713,2.438,2.438,0,0,0,.618-.08,2.4,2.4,0,0,0,1.726-1.689L24-.016ZM3.533,8.856l13.209-3.7L7,14.9V12.326Zm11.6,11.6L11.675,17H9.1l9.734-9.741Z" fill="currentColor"></path></svg>
                                                         Submit
                                                     </span>
-                                                } 
+                                                }
                                             </button>
                                         </form>
                                     </div>
@@ -993,10 +922,10 @@ export default function ProductClient({ initialData }) {
                                                     <h3 className="text-base font-semibold mb-2 break-words">{product?.name}</h3>
                                                     <p className="bg-primary/15 text-center text-xs font-semibold py-1 px-3 rounded-full text-dark w-max my-2">{product?.sku}</p>
                                                     <p className="text-base font-bold text-green-600">
-                                                        {Number(product?.discounted_price) === 0 ? <span className="text-[#00c97a]">Inquiry Now</span> : <> {isLoggedIn && <del className="text-sm mr-1 text-black">${product?.price}</del>} <span className="text-green-600">${product?.discounted_price} </span></> }
+                                                        {Number(product?.discounted_price) === 0 ? <span className="text-[#00c97a]">Inquiry Now</span> : <> {isLoggedIn && <del className="text-sm mr-1 text-black">${product?.price}</del>} <span className="text-green-600">${product?.discounted_price} </span></>}
                                                     </p>
                                                 </div>
-                                                
+
                                             </Link>
                                         </motion.div>
                                     ))
@@ -1006,6 +935,77 @@ export default function ProductClient({ initialData }) {
                     </div>
                 </div>
             </section>
+            {overlay == "Inquiry Now" &&
+                <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000] max-w-[800px] bg-white max-h-screen p-4 w-full h-auto overflow-auto">
+                    <form onSubmit={(e) => handleBulk(e)}>
+                        <div className="grid grid-cols-2 gap-x-4 gap-y-2 xl:gap-y-2">
+                            <div className="form-group mb-1 relative">
+                                <label htmlFor="fname" className="text-left text-sm font-semibold inline-block w-full mb-2">First Name</label>
+                                <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.fname ? "border-red-500" : "border-[#afafaf]"}`} id="fname" placeholder="Your First Name" value={bfname} onChange={(e) => setBfname(e.target.value)} />
+                                {bulkErrors?.fname && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.fname}</p>}
+                            </div>
+                            <div className="form-group mb-1 relative">
+                                <label htmlFor="lname" className="text-left text-sm font-semibold inline-block w-full mb-2">Last Name</label>
+                                <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.lname ? "border-red-500" : "border-[#afafaf]"}`} id="lname" placeholder="Your Last Name" value={blname} onChange={(e) => setBlname(e.target.value)} />
+                                {bulkErrors?.lname && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.lname}</p>}
+                            </div>
+                            <div className="form-group mb-1 relative">
+                                <label htmlFor="email" className="text-left text-sm font-semibold inline-block w-full mb-2">Email</label>
+                                <input type="email" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.email ? "border-red-500" : "border-[#afafaf]"}`} id="email" placeholder="Your Email" value={bemail} onChange={(e) => setBemail(e.target.value)} />
+                                {bulkErrors?.email && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.email}</p>}
+                            </div>
+                            <div className="form-group mb-1 relative">
+                                <label htmlFor="tel" className="text-left text-sm font-semibold inline-block w-full mb-2">Contact Number</label>
+                                <input type="tel" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.contact_no ? "border-red-500" : "border-[#afafaf]"}`} id="tel" placeholder="Your Contact Number" value={bnumber} onChange={(e) => setBnumber(e.target.value)} />
+                                {bulkErrors?.contact_no && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.contact_no}</p>}
+                            </div>
+                            <div className="form-group mb-1 relative">
+                                <label htmlFor="company" className="text-left text-sm font-semibold inline-block w-full mb-2">Company</label>
+                                <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.company ? "border-red-500" : "border-[#afafaf]"}`} id="company" placeholder="Your Company Name" value={bcompany} onChange={(e) => setBcompany(e.target.value)} />
+                                {bulkErrors?.company && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.company}</p>}
+                            </div>
+                            <div className="form-group mb-1 relative">
+                                <label htmlFor="location" className="text-left text-sm font-semibold inline-block w-full mb-2">Location</label>
+                                <input type="text" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.location ? "border-red-500" : "border-[#afafaf]"}`} id="location" placeholder="Location" value={blocation} onChange={(e) => setBlocation(e.target.value)} />
+                                {bulkErrors?.location && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.location}</p>}
+                            </div>
+                            <div className="form-group mb-1 relative">
+                                <label htmlFor="quantity" className="text-left text-sm font-semibold inline-block w-full mb-2">Quantity</label>
+                                <input type="number" className={`w-full border py-4 px-4 text-sm font-semibold appearance-none focus:border-primary ${bulkErrors?.message ? "border-red-500" : "border-[#afafaf]"}`} id="quantity" placeholder="Quantity" value={equantity} onChange={(e) => setEquantity(e.target.value)} />
+                                {bulkErrors?.quantity && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.quantity}</p>}
+                            </div>
+                            <div className="form-group mb-1 relative">
+                                <label htmlFor="message" className="text-left text-sm font-semibold inline-block w-full mb-2">Message</label>
+                                <textarea maxLength="200" className={`w-full border py-4 px-4 text-sm font-semibold focus:border-primary ${bulkErrors?.message ? "border-red-500" : "border-[#afafaf]"}`} id="message" placeholder="Your Message" onChange={(e) => setBmessage(e.target.value)} defaultValue={bmessage}></textarea>
+                                {bulkErrors?.message && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.message}</p>}
+                            </div>
+                            <div className="form-group">
+                                <Turnstile
+                                    key={captchaKey}
+                                    ref={turnstileRef}
+                                    sitekey="0x4AAAAAACEPK8k1LXHKe5b8"
+                                    onVerify={handleCaptchaChange}
+                                    onExpire={() => setCaptchaValue(null)}
+                                    className="text-left"
+                                />
+                                {bulkErrors?.captcha && <p className="text-sm font-semibold text-red-500 text-left mt-1">{bulkErrors?.captcha}</p>}
+                            </div>
+                        </div>
+                        <button className={`w-full text-sm font-bold text-center uppercase text-white btn btn-primary btn-scale-0 py-4 px-5 ${bulkLoading ? "bg-primary/70" : "bg-primary"} mt-2 cursor-pointer md:w-max`} disabled={bulkLoading}>
+                            {bulkLoading ?
+                                <div role="status" className="flex gap-2 items-center justify-center">
+                                    <svg aria-hidden="true" className="w-5 h-5 text-neutral-tertiary animate-spin fill-brand" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#ffffffbf" /><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="white" /></svg>
+                                    Please Wait...
+                                </div> :
+                                <span className="relative z-1 flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="Isolation_Mode" data-name="Isolation Mode" viewBox="0 0 24 24" className="w-5 h-5"><path d="M1.77,6.215A2.433,2.433,0,0,0,0,8.611a2.474,2.474,0,0,0,.771,1.71L4,13.548V20h6.448l3.265,3.267a2.4,2.4,0,0,0,1.706.713,2.438,2.438,0,0,0,.618-.08,2.4,2.4,0,0,0,1.726-1.689L24-.016ZM3.533,8.856l13.209-3.7L7,14.9V12.326Zm11.6,11.6L11.675,17H9.1l9.734-9.741Z" fill="currentColor"></path></svg>
+                                    Submit
+                                </span>
+                            }
+                        </button>
+                    </form>
+                </div>
+            }
         </>
     )
 }

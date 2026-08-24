@@ -92,7 +92,7 @@ const ZoomImage = ({ src, alt = "Product Image", zoomLevel = 2.5, lensSize = 100
             left: `${zoomCoords.left}px`,
             width: zoomCoords.width,
             height: zoomCoords.height,
-            backgroundImage: `url(${src})`,
+            backgroundImage: `url(${encodeURI(src)})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: `${zoomLevel * 100}% auto`,
             backgroundPosition: bgPos,
