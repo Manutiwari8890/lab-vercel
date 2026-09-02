@@ -3,7 +3,7 @@ import React, { lazy, Suspense } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_API_BASE_URL);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK);
 
 const Checkout = lazy(() => import("./CheckoutClient"));
 
