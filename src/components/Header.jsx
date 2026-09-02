@@ -114,8 +114,9 @@ function Header() {
             return response.json();
         })
         .then(data => {
-            if(!data?.isLogin){
+            if(!data?.data?.isLogin){
                 localStorage.removeItem("token")
+                localStorage.removeItem("user")
             }
             const filter = data.data.header.map((men) => {
                 const fil = men.children_recursive_front.map((f) => {
