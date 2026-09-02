@@ -121,7 +121,7 @@ export default function CheckoutClient() {
 
 
     useEffect(() => {
-        if (!isLoggedIn) {
+        if (!localStorage.getItem("user")) {
             router.push('/login');
         }
     }, [])

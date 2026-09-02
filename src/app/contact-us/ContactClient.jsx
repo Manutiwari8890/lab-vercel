@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import { useState, useEffect,  } from "react";
+import { useState, useEffect, useContext  } from "react";
 import { useToast } from "@/context/ToastContext";
 import CanvasCaptcha from "@/components/CanvasCaptcha";
 

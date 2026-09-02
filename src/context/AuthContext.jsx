@@ -10,16 +10,17 @@ const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const AuthProvider = ({ children }) => {
   const { fetchCartFromApi } = useContext(CartContext)
-
+  const router = useRouter();
   
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const saved = localStorage.getItem("user");
-     setUser(saved ? JSON.parse(saved) : null);
+    if (saved) {
+      setUser(JSON.parse(saved));
+    } 
   }, [])
 
-  const router = useRouter();
 
   const login = async (requestOptions, redirect) => {
     let serverCart = [];
@@ -78,7 +79,7 @@ export const AuthProvider = ({ children }) => {
   setUser(null);
 };
 
-  const isLoggedIn = useMemo(() => !!user, [user]);
+  const isLoggedIn = !!user;
   return (
     <AuthContext.Provider value={{ user, login, logout, isLoggedIn }}>
       {children}
