@@ -115,7 +115,7 @@ function Header() {
         })
         .then(data => {
             if(!data?.isLogin){
-                localStorage.removeItem("toekn")
+                localStorage.removeItem("token")
             }
             const filter = data.data.header.map((men) => {
                 const fil = men.children_recursive_front.map((f) => {
