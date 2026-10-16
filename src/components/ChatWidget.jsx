@@ -45,11 +45,11 @@ export default function ChatWidget() {
                     </svg>
                 </button>
             ) : (
-                <div className="w-120 h-120 bg-white border border-gray-200 rounded-xl shadow-xl flex flex-col justify-between">
+                <div className="w-120 h-110 bg-white border border-gray-200 rounded-xl shadow-xl flex flex-col justify-between">
                     {/* Header */}
                     <div className="bg-primary rounded-t-xl text-white px-5 py-3  flex justify-between items-center">
                         <span className="font-semibold">Lab Disposable Assistant</span>
-                        <button onClick={() => setIsOpen(false)} className="text-white font-bold">✕</button>
+                        <button onClick={() => setIsOpen(false)} className="text-white font-bold cursor-pointer">✕</button>
                     </div>
 
                     {/* Messages Container */}
