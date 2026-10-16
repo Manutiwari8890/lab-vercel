@@ -1,7 +1,6 @@
 import SingleBlog from "./SingleBlog";
 
 const getBlogDetail = async (slug) => {
-  console.log(slug)
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}blogs/${slug}`,
     {
@@ -20,19 +19,19 @@ export async function generateMetadata({ params }) {
     const {slug} = await params;
     const blog = await getBlogDetail(slug);
     const title =
-    blog.meta_title ||
-    `${blog.name} | Lab Disposable Products`;
+    blog?.data.meta_title ||
+    `${blog?.data.name} | Lab Disposable Products`;
 
   const description =
-    blog.meta_description ||
-    blog.short_description ||
-    `Buy ${blog.name} at best price `;
+    blog?.data.meta_description ||
+    blog?.data.short_description ||
+    `Buy ${blog?.data.name} at best price `;
 
   return {
     title,
     description, 
 
-    keywords: blog.meta_keyword || `${blog?.name}, Lab Disposable Products`,
+    keywords: blog?.data.meta_keyword || `${blog?.data?.name}, Lab Disposable Products`,
 
     alternates: {
       canonical: `https://labdisposable.com/blog/${slug}`,
@@ -46,7 +45,7 @@ export async function generateMetadata({ params }) {
       siteName: "Lab Consumables, Chemicals & Equipment from Dawn Scientific",
       images: [
         {
-          url: blog.image_url,
+          url: blog?.data.image_url,
         },
       ],
     },
@@ -55,7 +54,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title,
       description, 
-      images: [blog.image_url],
+      images: [blog?.data.image_url],
     },
   };
 }

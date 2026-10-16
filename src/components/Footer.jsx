@@ -6,6 +6,7 @@ import { useToast } from "../context/ToastContext";
 import { OverlayContext } from "../context/OverlayContext";
 import CanvasCaptcha from "./CanvasCaptcha";
 import Image from "next/image";
+import ChatWidget from "./ChatWidget";
 
 function Footer()
 {
@@ -399,11 +400,12 @@ function Footer()
                             </h6>
                         </div>
                     </div>
-                    <button className={`w-[30px] h-[30px] text-center content-center fixed bottom-5 right-5 z-100 bg-primary btn-primary cursor-pointer transition-linear animate-bounce duration-500 ${isScroll ? "opacity-100 scale-100" : "opacity-0 scale-0"} lg:w-[50px] lg:h-[50px]`} onClick={() => handleScrollTopClick()}>
+                    <button className={`w-[30px] h-[30px] text-center content-center fixed bottom-5 left-5 z-100 bg-primary btn-primary cursor-pointer transition-linear animate-bounce duration-500 ${isScroll ? "opacity-100 scale-100" : "opacity-0 scale-0"} lg:w-[50px] lg:h-[50px]`} onClick={() => handleScrollTopClick()}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" className="m-auto relative z-1 w-[15px] h-[15px] lg:w-[20px] lg:h-[20px]"><path d="M9.38346 14.5459V3.01257L6.2768 6.11924L5.3328 5.1619L10.0501 0.443237L14.7688 5.1619L13.8248 6.12057L10.7168 3.01257V14.5459H9.38346ZM2.87146 19.1099C2.25724 19.1099 1.7448 18.9046 1.33413 18.4939C0.923463 18.0832 0.717686 17.5703 0.716797 16.9552V13.7246H2.05013V16.9552C2.05013 17.1606 2.13546 17.349 2.30613 17.5206C2.4768 17.6921 2.6648 17.7775 2.87013 17.7766H17.2301C17.4346 17.7766 17.6226 17.6912 17.7941 17.5206C17.9657 17.3499 18.051 17.1615 18.0501 16.9552V13.7246H19.3835V16.9552C19.3835 17.5695 19.1781 18.0819 18.7675 18.4926C18.3568 18.9032 17.8439 19.109 17.2288 19.1099H2.87146Z" fill="#fff"></path></svg>
                     </button>
                 </div>
             </footer>
+            <ChatWidget />
         </>
     )
 }
